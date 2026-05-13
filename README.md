@@ -1,109 +1,186 @@
-# ola-uber-eda-pandas-matplotlib## 🚖 Project OverviewThis project presents an **Exploratory Data Analysis (EDA)** of ride-booking data inspired by **Ola and Uber**, using **Python, Pandas, and Matplotlib in Google Colab** to uncover business insights, customer behavior patterns, and operational trends.The project focuses on analyzing ride booking data to understand booking outcomes, revenue generation, vehicle performance, demand fluctuations, and payment preferences. This analysis demonstrates practical business intelligence and data analytics techniques used in transportation and mobility platforms.---## 📂 Dataset InformationThe dataset contains booking-related information including:- Booking ID- Booking Status- Vehicle Type- Booking Value- Hour of Booking- Payment MethodThe dataset was loaded and analyzed using **Google Colab** for cloud-based data analysis.---## 🛠 Tech Stack- Python- Pandas- Matplotlib- Google Colab- CSV Data Processing---## 📊 Analysis Performed### Booking Status DistributionThis analysis helps understand booking outcomes such as successful bookings, cancellations, and incomplete rides.```pythondf['Booking_Status'].value_counts().plot(kind='bar')
+# Ola-Uber-EDA-pandas-matplotlib-Analysis
 
-Business Insight: Helps identify ride completion efficiency and operational issues affecting customer experience.
+## 🚖 Project Overview
+This project presents an **Exploratory Data Analysis (EDA)** of ride-booking data inspired by **Ola and Uber**, using **Python, Pandas, and Matplotlib in Google Colab** to uncover business insights, customer behavior patterns, and operational trends.
 
-Revenue Analysis
-Analyzed total revenue contribution across different vehicle categories.
+The analysis focuses on ride booking data to understand booking outcomes, revenue generation, vehicle performance, demand fluctuations, and payment preferences. This project demonstrates practical business intelligence and real-world data analytics techniques.
+
+---
+
+## 📂 Dataset Information
+The dataset contains booking-related information such as:
+
+- Booking ID
+- Booking Status
+- Vehicle Type
+- Booking Value
+- Hour
+- Payment Method
+
+Dataset loaded using Google Colab.
+
+---
+
+## 🛠 Tech Stack
+
+- Python
+- Pandas
+- Matplotlib
+- Google Colab
+- CSV Dataset
+
+---
+
+## 📊 Analysis Performed
+
+### Booking Status Distribution
+Analyzed successful, cancelled, and incomplete bookings.
+
+```python
+df['Booking_Status'].value_counts().plot(kind='bar')
+```
+
+![Booking Status Distribution](Booking Status Distribution.png)
+
+**Insight:** Helps identify operational efficiency and booking completion trends.
+
+---
+
+### Revenue Analysis
+Analyzed revenue contribution by vehicle category.
+
+```python
 df.groupby('Vehicle_Type')['Booking_Value'].sum().sort_values(ascending=False).plot(kind='barh')
+```
 
-Business Insight: Identifies high-performing vehicle categories contributing maximum revenue.
+![Revenue Analysis](Revenue Analysis.png)
 
-Average Booking Value by Vehicle
-Compared average booking values across vehicle types.
+**Insight:** Identifies top revenue-generating vehicle types.
+
+---
+
+### Average Booking Value by Vehicle
+Compared average booking values across vehicle segments.
+
+```python
 df.groupby('Vehicle_Type')['Booking_Value'].mean()
+```
 
-Business Insight: Shows which vehicle segments generate higher per-ride revenue.
+![Average Booking Value by Vehicle](Average Booking Value by Vehicle.png)
 
-Demand by Hour
-Analyzed hourly booking demand patterns.
+**Insight:** Shows which vehicle segments generate higher per-trip value.
+
+---
+
+### Demand by Hour
+Analyzed hourly booking demand.
+
+```python
 df.groupby('Hour')['Booking_ID'].count().plot(title='Demand by Hour')
+```
 
-Business Insight: Helps identify peak ride demand periods for operational optimization.
+![Demand by Hour](Demand by Hour.png)
 
-Payment Method Preference
-Analyzed customer payment preferences.
+**Insight:** Helps identify peak customer booking hours.
+
+---
+
+### Payment Method Preference
+Analyzed customer payment behavior.
+
+```python
 df['Payment_Method'].value_counts().plot(kind='pie', autopct='%1.1f%%')
+```
 
-Business Insight: Provides insights into customer transaction behavior and payment adoption trends.
+![Payment Method Preference](Payment Method Preference.png)
 
-💻 Complete Python Code
-# ola-uber-eda-pandas-matplotlib# Google Colab Projectimport pandas as pdfrom pandas import read_csvimport matplotlib.pyplot as plt# Load Datasetdf = read_csv('Bookings.csv')# Preview Dataprint(df.head())# Dataset Infoprint(df.info())# Statistical Summaryprint(df.describe())# Booking Status Distributiondf['Booking_Status'].value_counts().plot(kind='bar', title='Booking Status Distribution')plt.show()# Revenue Analysisdf.groupby('Vehicle_Type')['Booking_Value'].sum().sort_values(ascending=False).plot(kind='barh', title='Revenue Analysis')plt.show()# Average Booking Value by Vehicleprint(df.groupby('Vehicle_Type')['Booking_Value'].mean())# Demand by Hourdf.groupby('Hour')['Booking_ID'].count().plot(title='Demand by Hour')plt.show()# Payment Method Preferencedf['Payment_Method'].value_counts().plot(kind='pie', autopct='%1.1f%%')plt.show()
+**Insight:** Reveals preferred payment methods among users.
 
-📌 Key Business Insights
+---
 
+## 💻 Complete Python Code
 
-Booking success and cancellation trends can be analyzed effectively.
+```python
+import pandas as pd
+from pandas import read_csv
+import matplotlib.pyplot as plt
 
+# Load Dataset
+df = read_csv('Bookings.csv')
 
-Revenue contribution varies significantly across vehicle categories.
+# Preview Dataset
+print(df.head())
 
+# Dataset Information
+print(df.info())
 
-Certain vehicle segments generate higher booking value.
+# Statistical Summary
+print(df.describe())
 
+# Booking Status Distribution
+df['Booking_Status'].value_counts().plot(kind='bar', title='Booking Status Distribution')
+plt.show()
 
-Peak booking hours indicate customer demand behavior.
+# Revenue Analysis
+df.groupby('Vehicle_Type')['Booking_Value'].sum().sort_values(ascending=False).plot(kind='barh', title='Revenue Analysis')
+plt.show()
 
+# Average Booking Value by Vehicle
+print(df.groupby('Vehicle_Type')['Booking_Value'].mean())
 
-Payment preferences reveal customer transaction habits.
+# Demand by Hour
+df.groupby('Hour')['Booking_ID'].count().plot(title='Demand by Hour')
+plt.show()
 
+# Payment Method Preference
+df['Payment_Method'].value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.show()
+```
 
+---
 
-🚀 Skills Demonstrated
+## 📌 Key Business Insights
 
+- Booking success and cancellation patterns can be identified clearly.
+- Revenue varies significantly by vehicle category.
+- Some vehicle types generate higher average booking values.
+- Peak demand hours indicate customer usage trends.
+- Payment preferences provide customer behavior insights.
 
-Exploratory Data Analysis (EDA)
+---
 
+## 🚀 Skills Demonstrated
 
-Python Programming
+- Exploratory Data Analysis (EDA)
+- Python Programming
+- Pandas Data Manipulation
+- Data Visualization
+- Business Analytics
+- Revenue Analysis
+- Customer Behavior Analysis
+- Statistical Analysis
+- Data Storytelling
 
+---
 
-Pandas Data Analysis
+## 🔮 Future Improvements
 
+- Interactive dashboard using Power BI / Tableau
+- Demand forecasting using Machine Learning
+- Ride cancellation prediction
+- Customer segmentation analysis
+- Geospatial hotspot analysis
+- KPI monitoring dashboard
 
-Data Visualization
+---
 
+## ⭐ Project Objective
 
-Business Analytics
+The objective of this project is to simulate how ride-sharing companies like **Ola and Uber** can leverage data analytics to improve operational efficiency, optimize pricing and business decisions, and enhance customer experience.
 
+---
 
-Revenue Analysis
+## 👨‍💻 Author
 
-
-Customer Behavior Analysis
-
-
-Statistical Aggregation
-
-
-Data Storytelling
-
-
-
-🔮 Future Improvements
-
-
-Interactive dashboard using Power BI / Tableau
-
-
-Demand forecasting using Machine Learning
-
-
-Ride cancellation prediction
-
-
-Customer segmentation
-
-
-Geospatial hotspot analysis
-
-
-KPI dashboard for business monitoring
-
-
-
-⭐ Project Objective
-The objective of this project is to simulate how ride-sharing companies like Ola and Uber can use data analytics to improve operational efficiency, optimize business decisions, and enhance customer experience through data-driven insights.
-
-👨‍💻 Author
-Vikas Chavan
-Data Analyst | Data Analytics | Python | SQL | AI Enthusiast
+**Nikhil Chavan**  
+B.Sc. Data Science Graduate | Data Analytics | Machine Learning | Python | SQL | AI Enthusiast
